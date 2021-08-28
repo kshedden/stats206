@@ -1,0 +1,12 @@
+baseURL = "http://www.stat.lsa.umich.edu/~kshedden/stats206"
+languageCode = "en-us"
+title = "Statistics 206: Introduction to data science"
+theme = "binario"
+publishDir = "/afs/umich.edu/user/k/s/kshedden/LSA-Files/Public/html/stats206"
+paginate = 10
+summaryLength = 10
+
+[params]
+copyright = "University of Michigan"
+colortheme = "dark-blue"
+customCSS = ["css/custom.css"]

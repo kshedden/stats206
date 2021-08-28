@@ -1,0 +1,10 @@
+baseurl = "http://www.stat.lsa.umich.edu/~kshedden/introds"
+languageCode = "en-us"
+title = "Introduction to Data Science"
+theme = "book"
+publishDir = "/afs/umich.edu/user/k/s/kshedden/LSA-Files/Public/html/introds"
+
+[params]
+
+    BookSection = "topics"
+    BookMenuBundle = "/menu"
