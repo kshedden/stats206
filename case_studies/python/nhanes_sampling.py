@@ -24,9 +24,13 @@ import os
 
 np.random.seed(34324)
 
+# Modify this string according to your section number (001 or 002):
+
+f = "stats206s002f21"
+
 # Now we load the NHANES data from a file.
 
-base = "/scratch/stats206w21_class_root/stats206w21_class/shared_data/datasets"
+base = "/scratch/%s_class_root/%s_class/shared_data/datasets" % (f, f)
 df = pd.read_csv(os.path.join(base, "nhanes.csv.gz"))
 
 # Here we will be focusing on blood pressure, which is mostly relevant

@@ -39,9 +39,13 @@ import seaborn as sns
 import scipy.stats as sps
 import os
 
+# Modify this string according to your section number (001 or 002):
+
+f = "stats206s002f21"
+
 # Next we load the data from the filesystem into a dataframe.
 
-base = "/scratch/stats206w21_class_root/stats206w21_class/shared_data/datasets"
+base = "/scratch/%s_class_root/%s_class/shared_data/datasets" % (f, f)
 df = pd.read_csv(os.path.join(base, "pums_short.csv.gz"))
 
 # ## Missing values

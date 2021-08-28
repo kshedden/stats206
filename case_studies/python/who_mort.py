@@ -72,9 +72,13 @@ import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# Modify this string according to your section number (001 or 002):
+
+f = "stats206s002f21"
+
 # Next we read the dataset into a dataframe.
 
-base = "/scratch/stats206w21_class_root/stats206w21_class/shared_data/datasets"
+base = "/scratch/%s_class_root/%s_class/shared_data/datasets" % (f, f)
 df = pd.read_csv(os.path.join(base, "who_allcause.csv.gz"))
 
 # # Comparing death rates by sex
