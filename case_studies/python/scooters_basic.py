@@ -39,10 +39,15 @@ import os
 # structure for holding data.
 #
 # Our first step here is to read the data from a csv format file, and
-# represent it in the computer's memory as a dataframe.  Pandas can do
-# this using the line of code below:
+# represent it in the computer's memory as a dataframe.  
 
-base = "/scratch/stats206w21_class_root/stats206w21_class/shared_data/datasets"
+# First, modify this string according to your section number (001 or 002):
+
+f = "stats206s002f21"
+
+# Now Pandas can read the data using the line of code below:
+
+base = "/scratch/%s_class_root/%s_class/shared_data/datasets" % (f, f)
 df = pd.read_csv(os.path.join(base, "scooters_short.csv.gz"))
 
 # The above command creates a dataframe holding the scooter trip data,
@@ -255,7 +260,7 @@ dx["duration"].describe()
 # sense with date and/or time values.
 
 df["year"] = df["Start Time"].dt.year
-df["weekofyear"] = df["Start Time"].dt.weekofyear
+df["weekofyear"] = df["Start Time"].dt.isocalendar().week
 
 # Now that we have a variables indicating the year and week of each
 # trip, we can use `groupby` to count how many trips occur for each
