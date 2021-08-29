@@ -2,24 +2,25 @@
 
 # In many cities around the world, micromobility in the form of
 # electric scooters has recently become very popular.  The city of
-# Austin, Texas has made trip-level data available from all scooter
-# companies operating in the city.
+# Austin, Texas has made available trip-level data from all scooter
+# companies operating within the city limits.
 
-# This is the first notebook that we see in Stats 206, so we are
-# mainly focused here on introducing the software tools and doing some
-# very basic summarization of the data.  There are a lot of new
-# programming concepts below, and some of them are deliberately only
-# explained at a high level.  We will revisit many of these concepts
-# later in the course and discuss them in greater detail at that time.
+# This is the first notebook that we see in Stats 206.  We are mainly
+# focused here on introducing the software tools and doing some very
+# basic summarization and description of the data.  There are a lot of
+# new programming concepts below, and some of them are deliberately
+# only explained at a high level.  We will revisit many of these
+# concepts later in the course and discuss them in greater detail at
+# that time.
 
 # # Importing modules
 
 # Python is a general-purpose programming language.  On its own, it
-# can be used for some basic tasks.  But most of the time, when
-# working with Python, you will be importing _modules_ containing code
-# written by other people that will help you perform more specialized
-# tasks.  For scientific computing and data science, we almost always
-# import the following modules.
+# can be used for some basic tasks.  Most of the time, when working
+# with Python, you will be importing _modules_ containing code that is
+# not part of the core Python language, that will help you perform
+# more specialized tasks.  For scientific computing and data science,
+# we almost always import the numpy and pandas modules.
 
 import numpy as np
 import pandas as pd
@@ -30,18 +31,20 @@ import os
 
 # # Loading data from a file
 
-# The scooter data are in a format called "csv", which means "comma
-# separted values".  This is the standard portable text-based format
-# for rectangular data (data arranged in a table with rows and
-# columns).  The "pandas" package, imported above, provides data
-# management and basic data analysis capabilities in Python.  The
-# central element of Pandas is a "dataframe", which is a rectangular
-# structure for holding data.
+# The scooter data are in a format called "csv", which stands for
+# "comma separated values".  This is the most common portable
+# text-based format for rectangular data (data arranged in a table
+# with rows and columns).  The "pandas" package, imported above,
+# provides data management and basic data analysis capabilities in
+# Python.  The central element of Pandas is a "dataframe", which is a
+# rectangular structure for holding data.
 #
-# Our first step here is to read the data from a csv format file, and
-# represent it in the computer's memory as a dataframe.  
+# Our first step here is to read the data from a csv format file
+# containing the scooter trips, and represent it in the computer's
+# memory as a dataframe.
 
-# First, modify this string according to your section number (001 or 002):
+# First, modify this string according to your section number (001 or
+# 002):
 
 f = "stats206s002f21"
 
@@ -50,15 +53,14 @@ f = "stats206s002f21"
 base = "/scratch/%s_class_root/%s_class/shared_data/datasets" % (f, f)
 df = pd.read_csv(os.path.join(base, "scooters_short.csv.gz"))
 
-# The above command creates a dataframe holding the scooter trip data,
-# and gives it the name `df` which we can use to refer to it later.
-# The `base` variable holds the file path to the location on
-# greatlakes where the data are stored.
+# The above commands create a dataframe holding the scooter trip data,
+# and creates a variable named `df` that is bound to this value.
 #
 # In the above commands, the values enclosed in quotation marks are
-# "strings".  A string is a value that contains text or characters.
-# In this case, the text contained in the string is the "path" to the
-# csv-format data that we wish to load.
+# "strings".  A string is a value that contains a sequence of text or
+# characters.  In this case, the string bound to the "base" variable
+# is the "file path" pointing to the CSV file on greatlakes that we
+# wish to load.
 
 # Note also that the filename above ends with ".gz".  This indicates
 # that the data are compressed so that the file takes up less space on
@@ -66,7 +68,7 @@ df = pd.read_csv(os.path.join(base, "scooters_short.csv.gz"))
 # reading it.
 
 # The dataframe that we just loaded contains all trips for a random
-# selection of 20,000 scooters from the complete Austin mobility
+# selection of 20,000 scooters drawn from the complete Austin mobility
 # dataset.
 
 # # Getting some basic information about the data
@@ -79,9 +81,7 @@ df.shape
 
 # The shape attribute contains the number of rows and the number of
 # columns in the dataframe.  This dataset is a subset containing about
-# one quarter of the complete Austin e-mobility dataset.  Right now,
-# it is sufficient to work with this subset, but later in the course
-# we may use the full data.
+# one quarter of the complete Austin e-mobility dataset.
 
 # Like most rectangular datasets, the rows of this dataset represent
 # cases and the columns represent variables.  A case here is a single
@@ -92,7 +92,7 @@ df.shape
 df.columns
 
 # Some of these variable names are self-explanatory, for others, we
-# will explain their meaning later as needed.  The next line of code
+# will explain their meaning below as needed.  The next line of code
 # displays the first few rows of the dataframe.  Depending on the
 # width of your screen, it is possible that only a subset of the
 # columns will be shown, in which case the omitted columns are
@@ -100,18 +100,14 @@ df.columns
 
 df.head()
 
-# Note that in the preceeding two code cells, one of them ends with
-# parentheses "()" and one does not.  Python uses the dot (".") symbol
-# to access two different types of components of a value -- "methods"
-# and "attributes".  Methods are essentially functions, and functions
-# take arguments inside a pair of parentheses.  Attributes are not
-# functions, and therefore do not have parentheses.  Since `head` is a
-# method, it must be called with parentheses (although here we are not
-# passing any arguments so the parentheses are empty).  `columns` is
-# an attribute, so it does not take parentheses.  It is an error to
-# use parenthes on an attribute, or to omit the parentheses on a
-# method.  To avoid such errors, you will need to learn where you have
-# an attribute and where you have a method.
+# Note that in the preceeding two code cells, "head" is followed by
+# parentheses and "column" is not. This is because "head" is a method
+# while "columns" is an attribute.  Methods are essentially functions,
+# and functions take arguments inside a pair of parentheses.
+# Attributes are not functions, and therefore do not have parentheses.
+# It is an error to use parentheses on an attribute, or to omit the
+# parentheses on a method.  To avoid such errors, you will need to
+# learn when you have an attribute and when you have a method.
 
 # The `head` method takes an optional argument, which is the number of
 # rows to display.  The default value of this argument is 5, so if we
@@ -125,13 +121,14 @@ df.head(3)
 # of times that a device ID appears in the dataframe is the number of
 # times that the scooter was rented during the period of time covered
 # by the dataset.  Most of the device IDs appear multiple times in the
-# data set, since most of the scooters were rented multiple times.  To
-# learn more about the device IDs, we can select the column of the
+# data set, since most of the scooters were rented multiple times.
+#
+# To learn more about the device IDs, we can select the column of the
 # dataframe containing these values using the syntax `df["Device
-# ID"]`.  This syntax creates a "series" since it contains data for
-# only one variable. The `unique` method then constructs another
-# series containing only the unique device IDs, and the size attribute
-# of this series tells us how many elements it contains.  Thus, the
+# ID"]`.  This creates a "series" since it contains data for only one
+# variable. The `unique` method then constructs another series
+# containing only the unique device IDs, and the `size` attribute of
+# this series tells us how many elements it contains.  Thus, the
 # following line of code tells us how many unique scooters are
 # represented in this dataset.
 
@@ -158,12 +155,12 @@ df["Device ID"].value_counts().describe()
 # `dtypes` attribute tells us the storage format of each variable in
 # the dataframe.  We can see below that the "Start Time" and "End
 # Time" variables have `object` storage format. To work with these
-# variables as time values we will want to convert them to proper
-# "datetime" values.
+# variables as time values we will want to convert them to "datetime"
+# values.
 
 df.dtypes
 
-# The following lines of code performs this conversion for the "Start
+# The following lines of code perform this conversion for the "Start
 # Time" variable.  Don't worry about the details of this conversion at
 # the moment.
 
@@ -185,15 +182,15 @@ print(df["Start Time"].max())
 # ## Scooter lifespan
 
 # One question that is often asked about scooter rentals is how long
-# the scooters stay in the fleet.  In some cities, scooters have not
-# lasted very long before breaking or being stolen or lost.  To
-# address this question, we can look at the earliest and last rental
-# of each scooter in the dataset.  We do this by creating a "grouped
-# dataframe" with the `groupby` method.  Grouped dataframes are very
-# powerful and we will use them frequently in this course.  We will
-# explain how grouped dataframes work in more detail later.  This
-# example is an introduction to show how grouped dataframes can be
-# used to achieve our current goals.
+# the scooters stay in the fleet.  In some cities, scooters have
+# generally not lasted very long before breaking or being stolen or
+# lost.  To address this question, we can look at the earliest and
+# last rental of each scooter in the dataset.  We do this by creating
+# a "grouped dataframe" with the `groupby` method.  Grouped dataframes
+# are very powerful and we will use them frequently in this course.
+# We will explain how grouped dataframes work in more detail later.
+# This example is an introduction to show how grouped dataframes can
+# be used to achieve our current goals.
 
 dx = df.groupby("Device ID")["Start Time"].agg([np.min, np.max])
 print(dx.columns)
@@ -230,15 +227,15 @@ dx["duration"].describe()
 # rental.  Then, we use the `describe` method to get some basic
 # summary information about these durations.
 
-# We see that the median scooter only seems to have been used for a
-# period of 55 days.  Note that this is a biased estimate of the
-# actual median lifespan due to "truncation" and "censoring".  We
-# won't define these terms precisely here, but they refer to the fact
-# that some scooters were in use before and/or after the period of
-# time covered by this dataset, so their actual lifespan is longer
-# than the value calculated here.  There are more advanced statistical
-# methods that can be used to correct for this bias, but we will not
-# pursue that here.
+# We see that the median scooter was used for a period of 82 days.
+# Note that this is a biased estimate of the actual median lifespan
+# due to "truncation" and "censoring".  We won't define these terms
+# precisely here, but they refer to the fact that some scooters were
+# in use before and/or after the period of time covered by this
+# dataset, so their actual lifespan is longer than the value
+# calculated here.  There are more advanced statistical methods that
+# can be used to correct for this bias, but we will not pursue that
+# here.
 
 # ## Scooter usage over time
 
@@ -288,18 +285,18 @@ assert(all(dx == dxx))
 # two variables, we have what is called a "hierarchical index".  We
 # could view the result (`dx`) directly, but to make it easier to read
 # the table, we can "unstack" it to produce a table in which the rows
-# are years and the columns are weeks.  This will be a 3 x 52 table
-# since we have at least some data in each of three years.  For
-# viewing on the screen, it is better to have a table that is longer
-# rather than wider, so we use the transpose (`T`) attribute to put
-# the weeks in the rows and the years in the columns.
+# are years and the columns are weeks.  This will be a 4 x 52 table
+# since we have at least some data in each of four years.  For viewing
+# on the screen, it is better to have a table that is longer rather
+# than wider, so we use the transpose (`T`) attribute to put the weeks
+# in the rows and the years in the columns.
 
 dx.unstack().T
 
 # In the result of the above cell, a `NaN` ("not a number") will
-# appear in any cell that has no data.  This includes some cells in
-# the future relative to when the data were obtained, and some earlier
-# cells for which no data are available.
+# appear in any cell that has no data.  This includes some cells that
+# fall in the future relative to when the data were obtained, and some
+# earlier cells for which no data are available.
 
 # The results show that scooter usage increased rapidly in late summer
 # of 2018 and remained very popular until late fall of 2019.  Note the
@@ -310,7 +307,8 @@ dx.unstack().T
 # pandemic reached the US, and scooter usage plumetted (although not
 # to zero).  By the end of the data series in the summer of 2020,
 # usage had recovered slightly, but only to around 15% of usage in the
-# previous year.
+# previous year.  In 2021, scooter usage remained somewhat lower than
+# pre-pandemic levels.
 
 # ## Trip duration
 
@@ -374,4 +372,4 @@ du.quantile(q)
 du.quantile([0.95, 0.99, 0.999])
 
 # This shows us, for example, that around 1 in 100 trips lasts one
-# hour or longer.
+# hour and 15 minutes or longer.

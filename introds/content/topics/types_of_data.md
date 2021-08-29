@@ -66,11 +66,11 @@ Ordinal data
 An _ordinal_ variable is one that takes on values that can be ordered,
 but are not quantifiable to arbitrarily high precision.  A common
 ordinal variable is educational attainment.  This variable is often
-coded as (i) did not complete high school, (ii) graduated from high school,
-(iii) completed some college, (iv) graduated from college, (v) completed some
+coded as (1) did not complete high school, (2) graduated from high school,
+(3) completed some college, (4) graduated from college, (5) completed some
 advanced or professional training beyond college.  Note that in this setting, a
 person belongs to the highest level that is applicable, so that a
-person who completed college is in group (iv) even though they also
+person who completed college is in group (4) even though they also
 have a high school degree.  Unlike a nominal variable, which cannot be
 ordered, there is a meaningful ordering for variables such as
 educational attainment.
@@ -87,7 +87,7 @@ disagree" with the statement.
 A key property of an ordinal value is that the increments between
 adjacent categories cannot always be taken to have equal magnitudes.
 For example, we do not know whether the difference between "neither
-agree nor disagree" and "somewhat disagree" is equivalent in meaning to the
+agree nor disagree" and "somewhat disagree" is equivalent to the
 difference between "somewhat disagree" and "strongly disagree", even though
 these are both pairs of adjacent categories.
 

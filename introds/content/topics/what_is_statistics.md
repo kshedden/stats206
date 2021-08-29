@@ -3,17 +3,16 @@ What is data science?
 
 The term _data_ refers to any collection of observations that measure something of
 interest, or that convey information about a question at hand.  This is a
-data science course, but the foundations of data science largely come
-from the field of statistics.  Mathematics and computer science are
-also important components of data science, but the core goal of data
-science, to learn from data, is precisely the goal of the field of
-statistics.
+data science course, and also a statistics course.  For our purposes, the terms "data science" and "statistics" are essentially synonyms,
+referring to the methodology used to learn from data.  Mathematics and computer science are
+also important components of data science.
 
 Nearly every branch of science involves collecting and analyzing data,
-so data science cannot "own" the study of data in the same way that
-biological science owns the study of living systems.  Data scientists
-do study data, but even more importantly, data scientists study the
-_methods_ for studying data.  This is what distinguishes a data
+but a "domain scientist" such as a biologist or a sociologist is primarily
+interested in the core questions of their domain, not in the methods used
+to analyze data.  Data scientists
+do analyze data, but even more importantly, data scientists analyze the
+_methods_ for analyzing data.  This is what distinguishes a data
 scientist, or a statistician, from a scientist studying and analyzing
 a data set
 that arises in their domain of research.
@@ -27,6 +26,10 @@ of a _hypothesis_.  For
 example, in a medical research setting we may have a hypothesis that
 "people who sleep less than six hours per night tend to have higher
 blood pressure than people who sleep more than seven hours per night".
+When we express such a hypothesis, we must be open to the possibility
+that the hypothesis is either true or false.  Upon systematically
+collecting relevant data, we will accumulate evidence that informs
+us about the truth of our hypothesis.
 
 Data science is part of an _empirical_ approach to answering research
 questions, meaning that we make progress by observing, taking
@@ -34,25 +37,25 @@ measurements, and collecting and interpreting data.  In contrast, a
 _first principles_ approach to research aims to answer questions using
 logical deduction and theory.  Logical deduction and theory do play
 important roles in data science, but in data science we prefer as much
-as possible to "let the data speak for itself", rather than beginning
-with a very specific theoretical framework with the expectation that the
-data will fit cleanly into this framework.
+as possible to "let the data speak for itself".
 
 Data science and statistics are "methodological" subjects, meaning
 that they focus on developing methods, tools, and approaches for
 conducting empirical investigations.  A primary aim of data science is to
 develop an understanding of the strengths and
-limitations of various methods for analyzing data.
+limitations of various methods for analyzing data.  Thus, data science
+is to some extent a "meta subject" which focuses on the merits of different
+approaches for learning about reality.
 
-While there is a very active theoretical branch of data science that deals with
-"pure" questions outside of the context of any application, this
+There is a very active theoretical branch of data science that deals with
+"pure" questions about data analysis that exist outside the context of any 
+specific application.  However this
 course will primarily develop the tools of statistics and data science
 through case studies that are set in various application domains.
 There is also a more abstract dimension to this course, because we
 will see that statistical tools often have properties that hold
 regardless of the specific type of data or application context in
 which the tool is applied.
-
 
 Uncertainty in data analysis
 ----------------------------
@@ -67,7 +70,7 @@ available data, and then quantify the uncertainty in these findings.
 Historically, it has been challenging to formalize exactly what we
 mean by "uncertainty".  A major advance occurred in the late 1800's,
 when probability theory matured as a branch of mathematics.
-Probability turns out to be a very useful tool for defining and
+Probability theory turns out to be a very useful tool for defining and
 quantifying what we mean by "uncertainty".  In spite of decades of
 progress, there remain many unresolved challenges in statistical data
 analysis.  New methods and approaches to analyzing data continue to be
@@ -84,7 +87,7 @@ The most prototypical setting for a statistical analysis is when our
 data constitute a representative or random sample from a population of interest.  We
 will discuss these terms in much more detail later in the course.  For
 now, we will introduce the main ideas using an example.  Suppose that
-our research question is to estimate the fraction of adults in the
+our research goal is to estimate the fraction of adults in the
 state of Michigan who travel more than 20 miles to work each day.
 Imagine that we could obtain a representative sample of 1,000 adults
 in Michigan (which has an adult population of roughly 7.5 million, so
@@ -112,24 +115,24 @@ to the truth.  On the other hand, if we know very little about how our
 sample was obtained, it can be very difficult to say anything about
 such errors.  This is a very common theme in statistics and data
 science -- it is very important to understand how the data being
-analyzed were obtained, otherwise we will be very limited in the
-claims that we can make.
+analyzed were collected, otherwise we will be very limited in the
+types of claims that we can make.
 
 More challenging population settings
 ------------------------------------
 
 A representative sample from a finite population, as described above,
 is perhaps the simplest setting in which to conduct a data analysis.
-Unfortunately, often our data and population are more challenging to
+Unfortunately, our data and population are usually more challenging to
 work with.
 
-One such example is data from a "time series", or "temporal system".
+One such example is "time series" data from a "dynamical system".
 Such a system, can be continuously changing, so that the system we
 observe today differs fundamentally from the system that we observed in
 the past.  Consider, for example, research on the Earth's climate.  We
 can collect data such as temperature, ice cover, and carbon dioxide
 levels -- but the relationships among these variables may appear to
-drift over time.  It's not that the laws of nature have changed, but
+drift over time.  It's not that the laws of nature are changing, but
 rather there are almost always additional relevant factors beyond what
 we have measured.  As these unobserved quantities change, the
 relationships among the observable variables may change as well.
@@ -145,7 +148,7 @@ simultaneously experienced low unemployment, high public debt, and low
 wage growth, but also low inflation.
 
 A system that is in a constant state of structural change is said to
-be "nonstationary", or "dynamic".  Standard methods for analyzing data
+be "nonstationary".  Standard methods for analyzing data
 from other settings may not give meaningful results here.  It is often
 possible to carry out meaningful empirical research by analyzing data
 obtained from such systems, but it is very important to be aware that
@@ -166,10 +169,10 @@ just tend to have insulin resistance (but a non-overweight COVID
 patient with insulin resistance would be just as likely to become
 severely ill).
 
-Causal statements are stronger and usually more interesting than
-statements that are not causal, but also are more difficult to
+Causal statements are usually much more interesting than
+statements that are not causal.  But causal statements are more difficult to
 demonstrate.  One of the major challenges in data analysis is to
 identify the situations in which causal conclusions may be drawn.
-Just as importantly, we should aim to identify when this cannot be done and
+Just as importantly, we should aim to determine when this cannot be done and
 communicate to our audience that a causal conclusion is not
 justified.
