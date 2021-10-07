@@ -85,7 +85,7 @@ which will have the form "/home/uniqname", where "uniqname" is your UM uniqname.
 
 3. Type or copy/paste the following command into the terminal and press "enter":
 
-`wget raw.github.com/kshedden/stats206/main/case_studies/download.sh`
+`wget raw.github.com/kshedden/stats206/main/case_studies/download.sh -O download.sh`
 
 4. Type "bash download.sh" then press "enter".
 
