@@ -5,7 +5,7 @@
 A __data summary__ is any technique that takes a large amount of data,
 and reduces it to a smaller and more interpretable form.
 
-Basic data summaries can be numbers or labels.  Collections of data
+Basic data summaries are usually numeric.  Collections of data
 summaries are often presented as tables or plots to makes them easier
 to interpret.
 
@@ -153,8 +153,9 @@ the same measurement units as the data from which they were derived.
 
 As an example, suppose that $p=0.75$ and the sample size is $n=243$.
 The $0.75$ sample quantile, also known as the 75th percentile, is
-approximately equal to the order statistic $x_{(182)}$, since
-$(182-1)/(243-1) \approx 0.748 \approx 0.75$.
+approximately equal to the order statistic $x_{(183)}$, since
+$0.75*243 = 182.25$, and 183 is the least integer that is greater
+than or equal to 182.25.
 
 The 75th percentile (0.75 quantile) gives us a value such that
 approximately 75% of the values in the sample fall at or below this

@@ -4,9 +4,13 @@ import pandas as pd
 import numpy as np
 import os
 
-# Load the data from the filesystem into a dataframe.
+# Modify this string according to your section number (001 or 002):
 
-base = "/scratch/stats206w21_class_root/stats206w21_class/shared_data/datasets"
+f = "stats206s002f21"
+
+# Next we load the data from the filesystem into a dataframe.
+
+base = "/scratch/%s_class_root/%s_class/shared_data/datasets" % (f, f)
 df = pd.read_csv(os.path.join(base, "pums_short.csv.gz"))
 
 # The variable named `VALP` contains the value of a property owned by

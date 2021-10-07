@@ -101,7 +101,7 @@ df.columns
 df.head()
 
 # Note that in the preceeding two code cells, "head" is followed by
-# parentheses and "column" is not. This is because "head" is a method
+# parentheses and "columns" is not. This is because "head" is a method
 # while "columns" is an attribute.  Methods are essentially functions,
 # and functions take arguments inside a pair of parentheses.
 # Attributes are not functions, and therefore do not have parentheses.
@@ -155,7 +155,7 @@ df["Device ID"].value_counts().describe()
 # `dtypes` attribute tells us the storage format of each variable in
 # the dataframe.  We can see below that the "Start Time" and "End
 # Time" variables have `object` storage format. To work with these
-# variables as time values we will want to convert them to "datetime"
+# variables as time values we will want to convert them to "datetime64"
 # values.
 
 df.dtypes
@@ -166,6 +166,11 @@ df.dtypes
 
 f = "%m/%d/%Y %I:%M:%S %p"
 df["Start Time"] = pd.to_datetime(df["Start Time"], format=f)
+
+# Now we check the types again and see that `Start Time` has type
+# "datetime64".
+
+df.dtypes
 
 # Now that we have this variable in a proper format, we can determine
 # the period of time covered by this dataset.
@@ -313,63 +318,16 @@ dx.unstack().T
 # ## Trip duration
 
 # Another characteristic of interest is the length of time of each
-# trip.  We can get this by subtracting the start time from the end
-# time for each trip.  But first we will convert the end time to a
-# proper datetime format, like we did for the start time earlier.
+# scooter trip. The `Trip Duration` variable contains this information
+# in units of seconds.  Suppose we wish to calculate some basic 
+# summary statistics for the trip durations for trips taken each 
+# month.  The `describe` method calculates many common summary
+# statistics.
 
-f = "%m/%d/%Y %I:%M:%S %p"
-df["End Time"] = pd.to_datetime(df["End Time"], format=f)
-df["Duration"] = df["End Time"] - df["Start Time"]
+df.groupby("Month")["Trip Duration"].describe()
 
-# We can use `describe` again to obtain some basic summary
-# information, but this mainly reveals that there are some issues with
-# the data.  This is extremely common with administrative data such as
-# we have here.  For example, we see that the longest trip was several
-# weeks long, and the shortest trip had a negative duration.
+# If we want to calculate a particular summary statistic, for example
+# several quantiles, we can proceed as below.  Note that by dividing
+# the results by 60, the units become minutes rather than seconds.
 
-df["Duration"].describe()
-
-# If we look at all the distinct duration values, we see that they are
-# all in 15 minute increments.
-
-df["Duration"].value_counts()
-
-# The start time and end time values are rounded in the data to the
-# nearest quarter hour, so that very short trips will be recorded as
-# having zero duration.  The next cell shows what proportion of the
-# trips are recorded as beginning and ending at the same (rounded)
-# time point, and thus having a reported duration of zero.
-
-du = df["Duration"]
-(du == pd.to_timedelta(0)).mean()
-
-# In the cell above, we use the `mean` method to calculate a
-# proportion, and we use the `to_timedelta` function to create a time
-# duration with zero length to use in the comparison.
-
-# Quantiles (compared to moments such as the mean) tend to be less
-# affected by data errors (as long as there aren't too many of them).
-# We can look at a few of the quantiles below, and we see that many of
-# the lower quantiles have zero duration, and the median duration is
-# 15 minutes.
-
-du.quantile([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9])
-
-# A more concise way to obtain these same quantiles is as follows:
-
-q = np.arange(0.1, 0.91, 0.1)
-du.quantile(q)
-
-# The function `np.arange(a, b, c)` creates a sequence of
-# regularly-spaced values, starting at `a`, increasing in steps of
-# `c`, and continuing as long as the value is less than `b`.  Note
-# that to include 0.9 in the list, the value of `b` must be strictly
-# larger than 0.9.
-
-# We see that the vast majority of trips are under 30 minutes.  To see
-# the longer trips, we will want to look at more extreme quantiles
-
-du.quantile([0.95, 0.99, 0.999])
-
-# This shows us, for example, that around 1 in 100 trips lasts one
-# hour and 15 minutes or longer.
+df.groupby("Month")["Trip Duration"].quantile([0.5, 0.9]).unstack() / 60

@@ -53,7 +53,7 @@ df = pd.read_csv(os.path.join(base, "pums_short.csv.gz"))
 # Most datasets in the real world have missing values.  There are many
 # reasons that a value may be missing.  For example, in some cases it
 # makes no sense to calculate a number (e.g. income for a young
-# child); or a person may refuse to answer a question in a survey; or
+# child), or a person may refuse to answer a question in a survey, or
 # a value may have inadvertently not been collected.
 
 # In Pandas, missing values are represented using the symbol `NaN`,
@@ -102,8 +102,7 @@ df["RNTP"].dropna().size
 # We will turn now to the variable "HINCP" which is the household
 # income -- the combined income of everyone living in one household.
 # Note that income is not the same thing as wealth.  Many people have
-# far more wealth than income, and their financial standing is largely
-# a function of their wealth, not of their income.
+# far more wealth than income.
 #
 # Overall, the United States has the following income characteristics:
 
@@ -143,6 +142,7 @@ df["HINCP"].quantile([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9])
 
 q = df["HINCP"].quantile([0.25, 0.75])
 iqr = q[0.75] - q[0.25]
+iqr
 
 # The skew of a distribution reflects the spacing between quantiles.
 # The standard quantile-based measure of skew is based on the spacings
@@ -150,6 +150,7 @@ iqr = q[0.75] - q[0.25]
 # these quantiles:
 
 q = df["HINCP"].quantile([0.25, 0.5, 0.75])
+q
 
 # We can see that the difference between the 0.25 and 0.5 quantiles is
 # less than the difference between the 0.5 and 0.75 quantiles.  This
@@ -162,7 +163,7 @@ q = df["HINCP"].quantile([0.25, 0.5, 0.75])
 # The standard quantitative measure for skew based on quantiles is
 # calculated next:
 
-(q[0.75] + q[0.25] - 2*q[0.5]) / (q[0.75] - q[0.25])
+(q[0.75] - 2*q[0.5] + q[0.25]) / (q[0.75] - q[0.25])
 
 # Since this value is positive, it follows that household income is
 # right-skewed.  Income measures are almost always right-skewed.  The
@@ -177,7 +178,7 @@ q = df["HINCP"].quantile([0.25, 0.5, 0.75])
 # When working with quantitative data such as incomes, it is very
 # common to transform the data prior to doing any analysis.  Log
 # transformations are particularly common because they are very easy
-# to interpret, and capture multiplicative relationships well.  If we
+# to interpret, and capture multiplicative relationships.  If we
 # use the base 2 logarithm, then the key fact to keep in mind when
 # interpreting log-scale data is that if person A has a 1 unit greater
 # value of the log2 income than person B, then person A has twice as
@@ -229,10 +230,7 @@ q[0.75] - q[0.25]
 # includes a variable called "FES" which partitions the population
 # into 8 subgroups based on household structure.  See the data
 # dictionary for the precise definitions of the groups (note that "LF"
-# in the documentation stands for "labor force").  These groupings
-# were defined many years ago, and are based on heterosexual family
-# structures.  Other variables added more recently capture information
-# about same-sex family structures.
+# in the documentation stands for "labor force").
 
 # First we can look at the set of standard summary statistics captured
 # by the `describe` method, but now restricting the calculations to
@@ -247,8 +245,9 @@ df.groupby("FES")["HINCP"].describe()
 # (group 8).
 
 # It is often convenient to re-order the rows of the output in order
-# to sort one of the values.  This can be accomplished as below, where
-# we sort the values according to the median income.
+# to sort one of the values.  This can be accomplished using the 
+# chained expression below, where we sort the values according to the 
+# median income.
 
 df.groupby("FES")["HINCP"].describe().sort_values(by="50%")
 
@@ -289,10 +288,10 @@ df.groupby(["FES", "REGION"])["HINCP"].aggregate(np.median)
 
 df.groupby(["FES", "REGION"])["HINCP"].aggregate(np.median).unstack()
 
-# It may be more informative to view these results with a parallel
-# coordinates plot.  To make this plot, we need to move the `FES` and
-# `REGION` variables from the index to regular columns of the
-# dataframe.  This is done using the `reset_index` method.
+# It may be more informative to view these results visually, using
+# a parallel coordinates plot.  To make this plot, we need to move 
+# the `FES` and `REGION` variables from the index to regular columns 
+# of the dataframe.  This is done using the `reset_index` method.
 
 dx = df.groupby(["FES", "REGION"])["HINCP"].aggregate(np.median)
 dx = dx.reset_index()
@@ -348,9 +347,9 @@ sns.lineplot(x="FES", y="Diff_1_3", data=dy)
 # reduces the dispersion in incomes for such people.  On the other
 # hand it is possible that a single non-working male in the northeast
 # is more likely to be a divorced professional, while a single
-# non-working male in the south is more likely to be a younger man who
-# was never married and has low professional skills.  This is only
-# speculation, additional analysis may help clarify these differences.
+# non-working male in the south is more likely to be an unskilled younger 
+# man who was never married.  This is only speculation, additional analysis 
+# would be required to clarify these differences.
 
 # This analysis shows that it is possible to gain insight about two
 # explanatory factors by stratifying the data on the _cross product_
@@ -394,10 +393,11 @@ print(r)
 
 # Using `aggregate` with multiple summary functions produces a "wide"
 # array of results.  For plotting and further analysis, we want our
-# data to have "long" form.  We can do this as follows.
+# data to have "long" form.  We can obtain the long form data as 
+# follows.
 
 r = r.reset_index().melt(id_vars="FES", var_name="stat_name", value_name="stat_value")
-print(r)
+r
 
 # Now we can make a parallel coordinates plot of the results, which
 # makes it easier to compare the different measures of scale.
@@ -456,6 +456,10 @@ print(df["linc_resid_med"].median())
 df["linc_z_m"] = df["linc_resid_mean"] / df.groupby("ST")["log_HINCP"].transform(np.std)
 df["linc_z_q"] = df["linc_resid_med"] / df.groupby("ST")["log_HINCP"].transform("mad")
 
+# Recall that the purpose of a Z-score is to convey how far each data
+# value falls from a reference value, measuring distance in statistical
+# units, not the raw units in which the values were measured.
+
 # We can check the summary statistics of these Z-scores to confirm
 # that they behave as expected.  Specifically, the moment-based
 # residuals will have mean zero and standard deviation one, and the
@@ -464,7 +468,8 @@ df["linc_z_q"] = df["linc_resid_med"] / df.groupby("ST")["log_HINCP"].transform(
 # small numerical errors since the standard representation of a real
 # number on a computer has finite precision.  Therefore, the mean of
 # the moment based residuals below may be expressed as something like
-# "2e-14", which means $2\times 10^{-14}$.
+# "2e-14", which means $2\times 10^{-14}$, which is nearly equal to 
+# zero..
 
 df[["linc_z_m", "linc_z_q"]].describe()
 
@@ -505,7 +510,7 @@ sns.lineplot(x=p, y=q)
 # points in the distribution. The quantile function drops sharply for
 # p less than 0.2, and rises sharply for p greater than 0.8, and
 # especially for p greater than 0.9.  The latter reflects the fact
-# that incomes in the highest 10-20 percent of the distribution are
+# that incomes in the highest 20 percent of the distribution are
 # much greater than incomes in the lower 80 percent of the
 # distribution.
 

@@ -6,8 +6,9 @@ Python, tools, and libraries
 * Python is a general-purpose programming language; to work with data
 in Python usually involves utilizing additional libraries.
 
-* For this class the main libraries we will use are Pandas (data management), Numpy (arrays and
-mathematical calculations), and Seaborn/Matplotlib (graphing).
+* In this course, the main libraries that we will use are Pandas 
+(for data management), Numpy (for arrays and
+mathematical calculations), and Seaborn/Matplotlib (for graphing).
 
 * Jupyter provides an interface for working with Python in a web
 browser.  It is one of several interfaces available for working with Python.
@@ -19,7 +20,7 @@ Cloud computing
 ---------------
 
 * Greatlakes is a cluster of computing servers located in a data
-  center on the University of Michigan campus.  Greatlakes has computational
+  center near the University of Michigan campus.  Greatlakes has computational
   capacity and data storage that we utilize for data analysis.
 
 * We connect to Greatlakes over the internet using a web browser. Code
@@ -53,7 +54,7 @@ Datasets, CSV files, DataFrames
 
 * A CSV ("coma separated values") file is a text file that holds a
   rectangular dataset.  The CSV format is a means for storing and
-  transmitting such data, it lives on the disk and is not normally used directly for
+  transmitting such data.  A CSV file lives on the disk and is not normally used directly for
   computation.
 
 * A Pandas DataFrame is a “live” representation of a rectangular
@@ -92,6 +93,23 @@ DataFrame values, variables, and names
   are "aligned" in that the rows of two dataframes correspond to
   the same cases, or that the columns of two dataframes correspond
   to the same variables.
+
+---
+
+Scalar and compound values
+--------------------------
+
+* A single numeric value, or a single string value, are both "scalar"
+values.  The assignment statements `x = 3` and `x = "dog"`` both create
+scalar values, and assign them to variables named x.
+
+* A compound value is a "collection" or "container" that holds multiple
+data values.  
+
+* The most basic compound value is a "Python list".  We can construct
+a literal list using an assignment statement like `x = [1, 3, 2]``.
+A literal list is a list that we create by explicitly typing its
+data values into our program code.
 
 ---
 
@@ -176,7 +194,7 @@ Chaining
   `g`, then the result of this operation is passed to `f`, and so on.
 
 * Method chaining has the form `x.f().g().h()`.  This is read from left
-  to right -- the method `f` is applied to `f`, then the value of this
+  to right -- the method `f` is applied to the value `x`, then the value of this
   operation is passed to the method `g`, and so on.
 
 * If additional arguments are used, a method chain will appear as, e.g.
