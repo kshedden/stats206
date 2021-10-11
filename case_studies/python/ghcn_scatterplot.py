@@ -7,11 +7,10 @@
 # and minimum temperatures, recorded at roughly 180 locations
 # (stations) around the world.
 
-# In addition to the temperature data,
-# we also have the latitude, longitude, and elevation of each station.
-# These data can be used to address a number of important questions
-# relating to variation in weather and climate over time and in
-# different geographic locations.
+# In addition to the temperature data, we also have the latitude,
+# longitude, and elevation of each station.  These data can be used to
+# address a number of important questions relating to variation in
+# weather and climate over time and in different geographic locations.
 
 # The data considered here are all quantitative.  Therefore we will be
 # using methods for analyzing quantitative data, including measures of
@@ -104,10 +103,11 @@ sns.boxplot(x="month", y="tmax", data=dx)
 # the dispersion is greater in the winter than in the summer.  As an
 # example of why this difference in dispersions ("heteroscedasticity")
 # exists, consider Portland, Oregon and Ann Arbor, Michigan, which are
-# at similar latitudes.  While Ann Arbor typically has temperatures
-# that remain below zero during January, Portland does not.  On the
-# other hand, Portland and Ann Arbor have quite similar temperatures
-# in the summer.
+# at similar latitudes.  However Portland is near the Pacific Ocean
+# which moderates its temerature, especially in winter.  While Ann
+# Arbor typically has temperatures that remain below zero during
+# January, Portland does not.  On the other hand, Portland and Ann
+# Arbor have quite similar temperatures in the summer.
 
 # By contrast to the above plot, if we select stations near the
 # equator we get a very different result:
@@ -184,10 +184,10 @@ plt.ylim(ymin=0)
 # a scatterplot of the absolute values of the residuals, and smooth it
 # using lowess. To make residuals in a scatterplot, we take the
 # variable that is plotted on the vertical axis, and subtract from it
-# its fitted value obtained using lowess.  By then smoothing the absolute
-# residuals, we are estimating the dispersion "local" to each latitude
-# value.  We will limit the vertical axis range to more clearly see
-# the shape of the smoothed curve.
+# its fitted value obtained using lowess.  By then smoothing the
+# absolute residuals, we are estimating the dispersion "local" to each
+# latitude value.  We will limit the vertical axis range to more
+# clearly see the shape of the smoothed curve.
 
 r["resid"] = r["tmax"] - r["tmax_smooth_lat"]
 r["absresid"] = np.abs(r["resid"])
@@ -238,8 +238,11 @@ df["range"] = df["tmax"] - df["tmin"]
 
 dx = df.loc[df.date.dt.month==6, :].copy()
 
-# This plot shows us how the daily temperature range relates to the
-# latitude at which a station is located.
+# The next plot shows us how the daily temperature range relates to
+# the latitude at which a station is located.  Note that here we are
+# running the lowess algorithm directly rather than letting Seaborn
+# call it for us.  This gives us more control over how the algorithm
+# runs.
 
 plt.clf()
 dx["range_smooth"] = sm.nonparametric.lowess(dx["range"], dx["lat"], return_sorted=False)
