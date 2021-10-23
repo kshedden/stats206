@@ -7,10 +7,21 @@
 # and minimum temperatures, recorded at roughly 180 locations
 # (stations) around the world.
 
+# The daily maximum temperature ('tmax') is the highest temperature
+# recorded at a specific location, over one 24-hour day.  The daily
+# minimum temperature ('tmin') is the lowest temperature recorded
+# at a specific location, over one 24-hour day.  Typically the
+# highest temperature will occur in early afternoon, and the 
+# lowest temperature will occur in early morning, but the dataset
+# does not contain the exact time within a day at which the
+# minimum and maximum temperatures were recorded.
+
 # In addition to the temperature data, we also have the latitude,
-# longitude, and elevation of each station.  These data can be used to
-# address a number of important questions relating to variation in
-# weather and climate over time and in different geographic locations.
+# longitude, and elevation of each station.  
+
+# These data can be used to address a number of important questions 
+# relating to variation in weather and climate over time and in 
+# different geographic locations.
 
 # The data considered here are all quantitative.  Therefore we will be
 # using methods for analyzing quantitative data, including measures of
