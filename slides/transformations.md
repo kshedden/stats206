@@ -87,7 +87,7 @@ between 1950 and 2000.
 
 * The population of Detroit was around 6.5 times greater than the
 population of Lagos in 1900, but the population of Lagos was around
-fifteen times greater than the population of Detroit in 2000.
+7.5 times greater than the population of Detroit in 2000.
 
 ---
 
