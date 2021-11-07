@@ -104,7 +104,7 @@ rather than an exact value, since the exact value depends on
 the distribution.
 
 Setting $c=3$
-we get $1/c^2 = 1/9 \approx 11%$.  Thus, for a non-Gaussian distribution,
+we get $1/c^2 = 1/9 \approx 0.11$.  Thus, for a non-Gaussian distribution,
 up to 11% of the values can fall more than 3 standard deviations
 from the mean, while in a Gaussian distribution only $1 - 0.997 = 0.003$,
 or 0.3% of the values can fall more than 3 standard deviations

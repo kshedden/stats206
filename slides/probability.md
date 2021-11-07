@@ -230,21 +230,21 @@ subtracts the population mean from each point in the sample space.
 The distribution of $Z = X - EX$, the centered
 version of $X$, is
 
-z          | -2.7 | -0.7 | 1.3 | 3.3 |
+z          | -2.7 | -1.7 | 0.3 | 3.3 |
 -----------|------|------|-----|-----|
 __p(Z=z)__ | 0.1  | 0.3  | 0.4 | 0.2 |
 
 The distribution of the squared deviations from the mean,
 $V = Z^2$, is
 
-v          | 7.29 | 0.49 | 1.69 | 10.89 |
+v          | 7.29 | 2.89 | 0.09 | 10.89 |
 -----------|------|------|------|-------|
 __p(V=v)__ | 0.1  | 0.3  | 0.4  | 0.2   |
 
 The population variance is the expected value of this distribution,
 which is
 
-$0.1\cdot 7.29 + 0.3\cdot 0.49 + 0.4\cdot 1.69 + 0.2\cdot 10.89 = 3.73$.
+$0.1\cdot 7.29 + 0.3\cdot 2.89 + 0.4\cdot 0.09 + 0.2\cdot 10.89 = 3.81$.
 
 ---
 
