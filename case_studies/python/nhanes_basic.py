@@ -145,11 +145,12 @@ df[["BPXSY1", "BPXSY2"]].corr()
 x = (df["BPXSY1"] - df["BPXSY2"]).dropna()
 np.median(np.abs(x))
 
-# We see that the two repeated measures of blood pressure are around 4
+# We see that the two repeated measures of blood pressure are around 2
 # units (mm Hg) apart.  In contrast, the difference in blood pressure
 # between (as opposed to within) people is much larger:
 
-np.median(np.abs(x - np.median(x)))
+bp1 = df["BPXSY1"].dropna()
+np.median(np.abs(bp1 - np.median(bp1)))
 
 # Yet another way to see this relationship is through a scatterplot.
 
