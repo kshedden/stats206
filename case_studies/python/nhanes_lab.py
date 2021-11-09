@@ -8,10 +8,59 @@ import os
 
 np.random.seed(34324)
 
-base = "/scratch/stats206w21_class_root/stats206w21_class/shared_data/datasets"
+f = "stats206s002f21"
+base = "/scratch/%s_class_root/%s_class/shared_data/datasets" % (f, f)
 df = pd.read_csv(os.path.join(base, "nhanes.csv.gz"))
 df = df.loc[df["RIDAGEYR"] >= 18, :]
 df = df.dropna()
+
+# BMI is defined to be the ratio of weight in kilograms to the
+# square of height in meters.  With this in mind, what would
+# you expect to see for the correlation coefficient between
+# BMI and weight, and the correlation coefficient between BMI
+# and height?  Just think qualitatively, e.g. "a big positive
+# number" or "a small negative number" or "something close to
+# zero".
+
+0
+
+# Calculate the correlation coefficients between BMI and weight,
+# and between BMI and height, over all subjects.
+
+0
+
+# Log transform height, weight, and BMI, and calculate the same
+# correlation coefficients as in the previous cell.
+
+0
+
+# Stratify the dataset into four age groups (using qcut).  Then, 
+# determine the correlation coefficient between weight and BMI 
+# within each age group.  Which age group has the strongest 
+# correlation?
+
+0
+
+# Create three BMI groups of approximately equal size using qcut.
+# Then construct a 4 x 3 contingency table between age group (as 
+# calculated above) and BMI group.
+
+0
+
+# Calculate the probabilities (proportions) corresponding to the
+# counts in the previous cell.
+
+0
+
+# Calculate the closest independent distribution to the probabilities
+# calculated in the previous cell.
+
+0
+
+# Calculate the Pearson residuals for the age group by BMI group
+# cross classification.
+
+0
 
 # Restrict the dataset to females between the ages of 18 and 70.
 # Calculate the mean height (BMXHT), the variance of the height, and
@@ -29,12 +78,16 @@ df = df.dropna()
 
 0
 
-# Use a loop to generate 100 subsets of size 50 from the height data
+# Use a loop to generate 100 random subsets of size 50 from the height data
 # selected above.  Calculate the sample mean and sample variance of
 # each subset.  Then take the variance of the sample mean, the
 # variance of the sample variances, and the mean of the sample
-# variances.  How are these values related?  Then repeat the exercise
-# using samples of size 200 and consider how the results change.
+# variances.  How are these values related?  
+
+0
+
+# Repeate the exercise from the previous cell using samples of size 200 
+# and consider how the results change.
 
 0
 
@@ -44,17 +97,6 @@ df = df.dropna()
 # from 10 to the total sample size.  Plot these correlations against
 # `k` and consider what result from probability theory is being
 # illustrated here.
-
-0
-
-# Generate a set of 100,000 values by forming `0.1 + z^2`, where `z`
-# follows a standard normal distribution.  Calculate the mean and
-# variance of these 100,000 values.  Then, within each iteration of a
-# loop, generate 20 values in this same way.  Retain the sample mean
-# and sample standard deviation of each set of 20 values. Then,
-# calculate the standard deviation of these sample means, and the mean
-# of the sample standard deviations.  Use these findings to validate
-# the SEM in this setting.
 
 0
 
