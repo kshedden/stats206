@@ -5,8 +5,8 @@
 Statistical estimation and population parameters
 ================================================
 
-In a general framework for statistical estimation, we have
-two related but different quantities:
+In statistical estimation, we focus on these related
+but distinct concepts:
 
 __Statistic__: a numerical summary calculated from data
 
@@ -33,7 +33,7 @@ the _population analogue_ of the statistic.
 Most population parameters can be estimated by one or
 more (often many) statistics.
 
-In most cases, the goal of calculating a statistic is to estimate
+The goal of calculating a statistic is to estimate
 its corresponding population parameter.
 
 For example:
@@ -55,14 +55,15 @@ to 2.
 Sampling distributions
 ======================
 
-Since the statistic (i.e. the estimate) is random, it has its own probability
+Since the statistic (the estimate) is random, it has its own probability
 distribution.  For example, if the data $x_1, \ldots, x_n$ have a
 distribution, then the sample mean $\bar{x}$ also has a distribution.
 
-If we have an identically distributed sample of data, we can
-(approximately) see the distribution of the data directly
-(e.g. by making a histogram
-of the data values).  We cannot see the distribution of a statistic,
+If we have an identically distributed (ID) sample of data, we can
+(approximately) see the distribution of the data,
+e.g. by making a histogram of the data values.  
+
+However we cannot see the distribution of a statistic,
 since we only observe a single value of the statistic.
 
 In general, we can only learn about the distribution of a statistic
@@ -83,13 +84,13 @@ of a statistic has a location, a dispersion, and other characteristics.
 
 In particular, the probability distribution of a statistic has
 an expected value.  For example, if the statistic is
-the sample mean, the expected value of its sampling
+the sample mean $\bar{x}$, the expected value of its sampling
 distribution can be denoted $E\bar{x}$.
 
 Suppose that the data are independent and identically
 distributed, and have mean $\mu$, that is, $Ex_i = \mu$
-for every index $i$.  In this case, the statistic also
-has mean $\mu$.  In words, $E\bar{x} = \mu$.
+for every index $i$.  The sample mean also
+has expected value $\mu$: $E\bar{x} = \mu$.
 
 When the expected value of the statistic is equal to
 the population parameter that it aims to estimate,
@@ -103,8 +104,8 @@ at least if the data are IID.
 
 ---
 
-Bias in estimation
-==================
+Bias in estimation due to the data
+==================================
 
 Some estimators are unbiased as long as the data are IID.
 This is true of the mean and all quantiles.
@@ -124,11 +125,11 @@ data were collected.
 
 ---
 
-Bias in estimation
-==================
+Bias in estimation due to the estimator
+=======================================
 
-Some statistics are biased even if the data are IID and are
-representative of the population of interest.
+Some statistics are biased even if the data are IID and
+represent of the population of interest.
 
 For example, suppose we wish to estimate the ratio of
 the expected income $\mu_c$ for college graduates
@@ -142,7 +143,7 @@ and IID data for an independent set of high school
 graduates $y_1, \ldots, y_n$.  Then it is natural to
 estimate the parameter of interest using $\bar{x}/\bar{y}$.
 
-However this estimate is biased -- even though $\bar{x}$
+However this "ratio estimate" is biased -- even though $\bar{x}$
 is unbiased for $\mu_c$ and $\bar{y}$ is unbiased for
 $\mu_h$, $\bar{x}/\bar{y}$ is not unbiased for $\mu_c/\mu_h$.
 
@@ -157,7 +158,7 @@ data points is less dispersed than the data values themselves.
 That is, the sampling distribution is less dispersed than the distribution
 of the data.
 
-A special case of this fact is that when we have an independent and
+When we have an independent and
 identically distributed (IID) sample, the dispersion of the sample mean,
 measured using the variance, can be directly related to the dispersion
 of the data.
@@ -178,7 +179,7 @@ The quantity $\sigma^2/n$ is called the _sampling variance of the sample mean_.
 Dispersion in sampling distributions
 ====================================
 
-Just as the standard deviation $\sigma$ is the square root of the variance
+Just as the standard deviation of the data $\sigma$ is the square root of the variance
 of the data ($\sigma^2$), the
 _standard error_ of a statistic is the square root of its sampling variance.
 
@@ -211,13 +212,12 @@ $\mu$.
 The estimation error is random, since it depends on the statistic, which
 is random.
 
-We always want the estimation error to be small.  But in practice,
-the estimation error will never be zero, and in rare cases it may
-be quite large.
-
 In order to quantify the
 uncertainty in our estimates, we need to have an understanding of
 how large the estimation errors tend to be.
+
+We want the estimation error to be small.  Increasing the sample size
+is often the best way to reduce the estimation error.
 
 ---
 
@@ -225,10 +225,10 @@ Standard errors and the empirical rule
 ======================================
 
 Due to the CLT, the sample mean (as well as many other statistics obtained
-by aggregating data) approximately follows a normal distribution.
+by aggregating data) approximately follows a Gaussian (normal) distribution.
 
-If the data are IID, we know that this distribution has mean $\mu$ (the
-mean of the data values), and it has standard deviation $\sigma/n^{1/2}$.
+If the data are IID, we know that the distribution of $\bar{x}$ has mean $\mu$, 
+and it has standard deviation $\sigma/n^{1/2}$.
 
 It follows that the estimation error $\bar{x} - \mu$ has mean zero, and
 also has standard deviation $\sigma/n^{1/2}$.
@@ -251,7 +251,7 @@ but many other statistics besides the sample mean also
 (approximately) behave in a Gaussian manner.
 
 However, there is often no simple formula that gives us
-the sampling distribution of a statistic (except for the sample mean).
+the sampling distribution of a statistic.
 
 Next we consider a few other statistics where exact or approximate standard
 errors are available.
@@ -265,14 +265,14 @@ A proportion is actually just a mean.  For example, suppose we are interested
 in the proportion of values from a particular distribution that are less
 than 1, which we can write $p = P(X < 1)$. This is equivalent to taking the mean of the
 _indicator function_ $Y$, which
-which is defined to be equal to 1 if the value that we observe is less than 1,
-and is defined to be equal to 0 otherwise.
+which is defined to be equal to 1 if $X$ is less than 1,
+and 0 otherwise.
 
 The indicator function is sometimes written $Y = I(X<1)$.
 
 Analogously, if we have data $x_1, \ldots, x_n$, then
 we can create new data $y_i = I(x_i < 1)$ (so that $y_i=1$ if $x_i<1$ and $y_i=0$
-if $x_i\ge 1$).  The average value $\bar{y}$ is a statistic that estimates $P(X < 1$).
+if $x_i\ge 1$).  The average value $\bar{y}$ is a statistic that estimates $P(X < 1)$.
 
 The variance of each $y_i$ is $p(1-p)$, where $p=P(X<1)$ is the population
 parameter (we won't derive this fact in this class).
@@ -286,15 +286,10 @@ Other statistics
 ================
 
 Some statistics, such as quantiles, have standard errors that
-are quite difficult to obtain.  This is one of the reasons
-that quantiles are used less extensively in some parts of
-statistics compared to moments.
+are quite difficult to obtain.  
 
-Sometimes, a complex statistic has a surprisingly simple
-standard error (at least in approximate form).  The sample
-correlation coefficient has standard error that is roughly
-equal to $1/n^{1/2}$ (there are better approximations than
-this one, but they are more complicated).
+The sample correlation coefficient has standard error that is roughly
+equal to $1/n^{1/2}$.
 
 Many statistics, even those that do not have an easily-obtained
 standard error, continue to exhibit the same "root n" scaling

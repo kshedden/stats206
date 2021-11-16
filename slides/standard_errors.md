@@ -5,7 +5,7 @@
 Review of terms
 ===============
 
-In statistics, our goal is usually to estimate a characteristic or
+In statistical data analysis, our goal is usually to estimate a characteristic or
 parameter of the population, which may be called the _estimand_.  To
 achieve this goal, we use a statistic that is derived from our sample
 of data.
@@ -31,8 +31,8 @@ If our goal is to estimate the population mean, then the estimand is
 denoted $\mu$, and the estimator is $\bar{x}$, the average or sample
 mean of the data.
 
-The standard error in this case is also known as the standard error of
-the mean, $\sigma/n^{1/2}$, where $\sigma$ is the sample size.
+The standard error in this case is the standard error of
+the mean (SEM), $\sigma/n^{1/2}$, where $\sigma$ is the sample size.
 
 Since $\bar{x}$ is unbiased for $\mu$, the estimation errors have
 expected value zero, and standard deviation $\sigma/n^{1/2}$.
@@ -49,9 +49,9 @@ at least 99% of the time.
 Estimated standard errors
 =========================
 
-The standard error of the mean is $\sigma/n^{1/2}$.  When conducting a
+When conducting a
 data analysis involving estimation of a population mean, it would be
-useful to know this value in order to help us assess how precise our
+useful to know the SEM ($\sigma/n^{1/2}$) in order to help us assess how precise our
 estimate $\bar{x}$ is.
 
 We almost always know the value of $n$ (the number of data values),
@@ -135,10 +135,27 @@ error" in this difference.
 
 ---
 
+Pooling standard errors
+=======================
+
+When we are comparing two estimated quantities, each has its
+own standard error.  Suppose we are comparing $\bar{x}$ to
+$\bar{y}$, and the SEM for $\bar{x}$ is $s_x$ and the SEM
+for $\bar{y}$ is $s_y$.
+
+The SE for $\bar{x} - \bar{y}$ is
+
+$$
+(s_x^2 + s_y^2)^{1/2}
+$$
+
+---
+
 Analyses involving comparisons
 ==============================
 
-Suppose that the measurements for glass type A have an estimated
+Continuing with the glass example, 
+suppose that the measurements for glass type A have an estimated
 standard deviation ($\hat{\sigma}$) of 9 PSI, and the measurements for
 glass type B have an estimated standard deviation of 7 PSI.
 

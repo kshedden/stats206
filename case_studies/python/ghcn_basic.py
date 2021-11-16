@@ -231,7 +231,7 @@ plt.ylabel("Absolute residual")
 # lies.
 
 plt.clf()
-sns.distplot(df.lat)
+sns.histplot(df.lat)
 
 # ## Daily temperature range
 
