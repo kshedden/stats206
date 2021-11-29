@@ -124,7 +124,7 @@ population mean.
 Interpretation of confidence intervals
 ======================================
 
-Three important points to note:
+Four important points to note:
 
 * The 95% confidence interval for the mean does not contain 95% of
 the data (it contains a much lower fraction of the data than 95%).
@@ -281,14 +281,14 @@ Many confidence intervals are approximate in some way, for example:
 the approximate standard error $1/n^{1/2}$ for the correlation
 coefficient).
 
-* The confidence interval may use a standard error with a nuisance
+* The confidence interval may use a standard error involving a nuisance
   parameter.
 
-* The sample size may be small so that the empirical rule is
-  approximate.
+* The sample size may be small so that the empirical rule is a poor
+  approximation.
 
 * The data may have been collected in a way that makes them
-independent and identically distributed.
+not independent and identically distributed.
 
 In these cases, the coverage probability implied by the empirical rule
 may not be the actual coverage probability.  For example, the

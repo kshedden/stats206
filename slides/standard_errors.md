@@ -2,12 +2,12 @@
 % Kerby Shedden
 % November 1, 2020
 
-Review of terms
-===============
+Review of terminology
+=====================
 
-In statistical data analysis, our goal is usually to estimate a characteristic or
-parameter of the population, which may be called the _estimand_.  To
-achieve this goal, we use a statistic that is derived from our sample
+In statistical data analysis, our goal is usually to estimate a characteristic 
+of the population, which may be called a _parameter_ or _estimand_.  To
+achieve this goal, we use a _statistic_ that is derived from our sample
 of data.
 
 If $\alpha$ is the estimand, then a statistic that estimates $\alpha$
@@ -35,7 +35,7 @@ The standard error in this case is the standard error of
 the mean (SEM), $\sigma/n^{1/2}$, where $\sigma$ is the sample size.
 
 Since $\bar{x}$ is unbiased for $\mu$, the estimation errors have
-expected value zero, and standard deviation $\sigma/n^{1/2}$.
+expected value zero and standard deviation $\sigma/n^{1/2}$.
 
 By the central limit theorem (CLT), the sample mean is approximately
 Gaussian.  Therefore, the estimation errors $\bar{x} - \mu$ are
@@ -199,7 +199,7 @@ support the tax is estimated by $\bar{y}$, the corresponding true
 proportion can be denoted $q$, and the standard error is
 $(q(1-q)/m)^{1/2}$.
 
-The estimated standard error for the California sample is
+The estimated standard error for the New York sample is
 $(\bar{y}(1-\bar{y})/m)^{1/2}$.
 
 ---
@@ -245,7 +245,7 @@ value and then dividing by an estimate of dispersion.
 Z-scores of statistics
 ======================
 
-__Example__: Suppose we are assessing whether a coin is fair, meaining
+__Example__: Suppose we are assessing whether a coin is fair, meaning
 that when flipped it is equally likely to produce a head or a tail.
 The statistic $\hat{\alpha}$ here can be the proportion of heads
 obtained in $n$ independent flips, the reference point is
@@ -257,8 +257,8 @@ __Example__: Suppose we are comparing the exected number of minutes of
 nightly sleep betweeen two populations.  We obtain IID data from each
 population and form sample means $\bar{x}$ and $\bar{y}$.  The
 statistic of interest is the difference $\bar{x}-\bar{y}$, and the
-reference point is zero.  The standard error is $(\hat{\sigma}_x/n_x +
-\hat{\sigma}_y/n_y)^{1/2}$, where $n_x$ $n_y$, $\hat{\sigma}_x$,
+reference point is zero.  The standard error is $(\hat{\sigma}_x^2/n_x +
+\hat{\sigma}_y^2/n_y)^{1/2}$, where $n_x$ $n_y$, $\hat{\sigma}_x$,
 $\hat{\sigma}_y$, are the sample sizes and estimated standard
 deviations for the two populations.  The Z-score is
-$(\bar{x}-\bar{y})/(\hat{\sigma}_x/n_x + \hat{\sigma}_y/n_y)^{1/2}$.
+$(\bar{x}-\bar{y})/(\hat{\sigma}_x^2/n_x + \hat{\sigma}_y^2/n_y)^{1/2}$.

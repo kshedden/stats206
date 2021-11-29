@@ -58,6 +58,9 @@ $\log(2x) = \log(x) + 1$.  In words, if two
 log-transformed data values differ by 1 (under subtraction), then
 their original untransformed values differ by a factor of 2.
 
+Changes on the log scale "compound", so that if $\log(x) - \log(y) = d$,
+then $x$ is $2^d$ times greater than $y$.
+
 Many natural phenomna from physics, biology, and social science have
 multiplicative behavior, and are often easier to understand when
 analyzed on the log scale.
@@ -87,7 +90,7 @@ between 1950 and 2000.
 
 * The population of Detroit was around 6.5 times greater than the
 population of Lagos in 1900, but the population of Lagos was around
-fifteen times greater than the population of Detroit in 2000.
+7.5 times greater than the population of Detroit in 2000.
 
 ---
 
