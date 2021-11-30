@@ -25,7 +25,9 @@
 # people who die within each demographic group per country/year, and
 # the population sizes of these groups.  We can form a proportion from
 # these two numbers.  Here, a demographic group is defined by an age
-# band (e.g. 70-75 years) and sex (female or male).
+# band (e.g. 70-75 years) and sex (female or male).  Note that age
+# bands are coded as numbers from 1-25, see the documentation for
+# the mapping from age band codes to age ranges in years.
 
 # We will focus here on the use of Z-scores for comparing proportions.
 # Suppose we have two proportions derived from data, $\hat{p}$ and
@@ -125,18 +127,21 @@ dx.head()
 # Before proceeding, let's see what we can learn by exploring the
 # death rates.  First we make a boxplot showing how the female death
 # rates vary by age.  Recall that the numerical age values represent
-# age bands, see the documentation for the exact age ranges.  The main
-# insight here is that the death rate is higher for older people.
+# age bands, see the documentation for the exact age ranges.  Age=1
+# corresponds to the entire population so we omit it from the plot.
+# The main insight here is that the death rate is higher for older 
+# people.
 
-sns.boxplot(x="Age", y="drate_f", data=dx)
+dxx = dx.loc[dx["Age"] > 1, :]
+sns.boxplot(x="Age", y="drate_f", data=dxx)
 
 # Sometimes a transformation reveals something that is otherwise
 # hidden.  Below we make a boxplot of the square-root transformed
 # proportions, and see that mortality is somewhat greater for very
 # young children, compared to older children and young adults.
 
-dx["drate_f_sqrt"] = np.sqrt(dx["drate_f"])
-sns.boxplot(x="Age", y="drate_f_sqrt", data=dx)
+dxx["drate_f_sqrt"] = np.sqrt(dxx["drate_f"])
+sns.boxplot(x="Age", y="drate_f_sqrt", data=dxx)
 
 # Next we make a scatterplot of the male death rates (vertical axis)
 # against the female death rates (horizontal axis).  The trend
@@ -147,7 +152,7 @@ sns.boxplot(x="Age", y="drate_f_sqrt", data=dx)
 # return to this further below.
 
 plt.grid(True)
-sns.scatterplot(x="drate_f", y="drate_m", data=dx)
+sns.scatterplot(x="drate_f", y="drate_m", data=dxx)
 plt.plot([0, 1], [0, 1], '-')
 
 # A useful plot in this setting is a "mean/difference plot", sometimes
@@ -158,10 +163,10 @@ plt.plot([0, 1], [0, 1], '-')
 # large.  This plot also makes it easy to see that it is more common
 # that the male death rate exceeds the female death rate.
 
-dx["drate_diff"] = dx["drate_f"] - dx["drate_m"]
-dx["drate_mean"] = (dx["drate_f"] + dx["drate_m"]) / 2
+dxx["drate_diff"] = dxx["drate_f"] - dxx["drate_m"]
+dxx["drate_mean"] = (dxx["drate_f"] + dxx["drate_m"]) / 2
 plt.grid(True)
-sns.scatterplot(x="drate_diff", y="drate_mean", data=dx)
+sns.scatterplot(x="drate_diff", y="drate_mean", data=dxx)
 
 # ## Analyses considering statistical evidence and uncertainty
 
@@ -263,13 +268,15 @@ sns.scatterplot(x="logpop", y="zdiff", data=dz)
 # we lack power to detect them when the sample size is small.
 
 # We can also consider whether the evidence for sex-differences in
-# mortality differs across the ages.  The boxplot below shows that
-# there is strong evidence that males have higher mortality than
-# females in every age band.  Even the magnitude of this evidence does
-# not vary much with age.
+# mortality differs across age bands.  We select a single year to
+# avoid mixing data from different historical periods.  The boxplots
+# below show that males generally have higher mortality than females 
+# in all age bands, but the difference is strongest around age band 20
+# (corresponding to ages 70-74).
 
+dz = dx.loc[(dx["Age"] > 1) & (dx["Year"] == 2010), :]
 plt.figure(figsize=(12, 4))
-sns.boxplot(x="Year", y="zdiff", data=dz)
+sns.boxplot(x="Age", y="zdiff", data=dz)
 
 # __Note on very large Z-scores:__ Z-scores are mainly used to
 # quantify evidence that two things are different, here the difference

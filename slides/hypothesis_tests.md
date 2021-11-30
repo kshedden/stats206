@@ -2,18 +2,22 @@
 % Kerby Shedden
 % November 16, 2020
 
-Scientific and statistical hypotheses
-=====================================
+Hypothesis testing and empirical research
+=========================================
 
 Along with standard errors and confidence intervals, _hypothesis
 testing_ is one of the most widely-used techniques in formal
-statistical inference.
+statistical inference.  It is one of the main ways to communicate
+about uncertainty in a data analysis.
 
 Statistical hypothesis testing is inspired by the _empirical approach_
 to scientific research in which theories are proposed that may be
 _falsified_ by certain observations.  For example, the theory that
 cancer is always caused by damage to the DNA would be falsified if a
 form of cancer were identified in individuals with no DNA damage.
+
+Scientific and statistical hypotheses
+=====================================
 
 Statistical hypothesis testing often starts with a hypothesis that we
 wish to falsify (or _reject_) called the _null hypothesis_.  The null
@@ -22,10 +26,43 @@ population.  If we then observe data that contradicts the null
 hypothesis, we have provided evidence that this relationship is in
 fact present.
 
+Evidence against the null hypothesis is quantified using a 
+_test statistic_, which is a summary statistic derived from the
+data.  Usually, we construct the test statistic so that a value
+of zero represents the least possible evidence against the null
+hypothesis, and greater values of the test statistic represent
+increasing levels of evidence against the null.
+
+---
+
+Comparing a parameter to a fixed value
+======================================
+
+In some hypothesis tests, the null hypothesis is that a single
+population parameter is equal to a fixed value.
+
 Example: if we suspect that poor sleep is associated with high blood
-pressure, we may conduct a study in which data on sleep habits and
-blood pressure are collected.  The null hypothesis may be that the
-correlation coefficient between sleep and blood pressure is zero.
+pressure, we may conduct a study in which data on sleep duration and
+blood pressure are collected on a sample of people.  The null hypothesis 
+may be that the correlation coefficient between sleep and blood pressure 
+is zero.
+
+Here, the correlation coefficient is the population parameter being
+investigated, and zero is the fixed point to which we want to compare
+this population parameter.
+
+A test statistic in this situation might be the Z-score $r/SE(r)$,
+where $r$ is the sample correlation coefficient between sleep duration
+and blood pressure in the data, and $SE(r) = 1/n^{1/2}$, where
+$n$ is the sample size, is its standard error.
+
+The test statistic is $T = n^{1/2} r$.  If the null hypothesis
+is true, then $T$ follows a standard normal distribution, therefore
+95% of the time, $T$ falls between -2 and 2.
+
+Knowing that $T$ follows a standard normal distribution under the
+null hypothesis allows us to judge the evidence that it conveys
+against the null hypothesis.
 
 ---
 
@@ -33,7 +70,7 @@ Comparing two expected values
 =============================
 
 Many interesting statistical hypotheses involve comparisons.  In
-particular, it is extremely common that we wish to compare two
+particular, it is common that we wish to compare two
 expected values.
 
 Suppose for example that we wish to assess whether people who take
